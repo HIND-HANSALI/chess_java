@@ -3,6 +3,9 @@ package org.example.board;
 public class Board {
     private Integer rows;
     private Integer columns;
+
+    private Piece[][] pieces;
+
     public Integer getRows() {
         return rows;
     }
@@ -14,6 +17,7 @@ public class Board {
     public Board(Integer rows, Integer columns) {
         this.rows = rows;
         this.columns = columns;
+        pieces = new Piece[8][8];
     }
 
     public static char[][] createChessBoard() {
@@ -68,6 +72,18 @@ public class Board {
         }
 
     }
+
+    /*public static void printBoard(Piece[][] pieces) {
+        for (int i = 0; i < pieces.length; i++) {
+            System.out.print((8 - i) + " ");
+            for (int j = 0; j < pieces.length; j++) {
+                printPiece(pieces[i][j], false);
+            }
+            System.out.println();
+        }
+        System.out.println("  a b c d e f g h");
+    }*/
+
 
 
     public static void main(String[] args) {
