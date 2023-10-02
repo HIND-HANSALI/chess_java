@@ -1,11 +1,18 @@
 package org.example.board;
 
+import org.example.pieces.*;
+
 public class Board {
     private Integer rows;
     private Integer columns;
 
-    private Piece[][] pieces;
+    private Piece[][] board;
 
+    public Board(){
+
+        this.board = new Piece[8][8];
+        this.createChessBoard1();
+    }
     public Integer getRows() {
         return rows;
     }
@@ -14,11 +21,56 @@ public class Board {
         return columns;
     }
 
-    public Board(Integer rows, Integer columns) {
-        this.rows = rows;
-        this.columns = columns;
-        pieces = new Piece[8][8];
+
+    public void createChessBoard1(){
+        for(int i = 0; i < 8; i++) {
+
+            this.board[1][i] = new Pawn("♟", Color.White, new Position(1, i));
+            this.board[6][i] = new Pawn("♙", Color.Black, new Position(6, i));
+        }
+//white
+        this.board[0][0] = new Rook("♜", Color.White, new Position(0, 0));
+        this.board[0][1] = new Knight("♞", Color.White, new Position(0, 1));
+        this.board[0][2] = new Bishop("♝", Color.White, new Position(0, 2));
+        this.board[0][3] = new Queen("♛", Color.White, new Position(0, 3));
+        this.board[0][4] = new King("♚", Color.White, new Position(0, 4));
+        this.board[0][5] = new Bishop("♝", Color.White, new Position(0, 5));
+        this.board[0][6] = new Knight("♞", Color.White, new Position(0, 6));
+        this.board[0][7] = new Rook("♜", Color.White, new Position(0, 7));
+
+//Black
+        this.board[7][0] = new Rook("♖", Color.Black, new Position(7, 0));
+        this.board[7][1] = new Knight("♘", Color.Black, new Position(7, 1));
+        this.board[7][2] = new Bishop("♗", Color.Black, new Position(7, 2));
+        this.board[7][3] = new Queen("♕", Color.Black, new Position(7, 3));
+        this.board[7][4] = new King("♔", Color.Black, new Position(7, 4));
+        this.board[7][5] = new Bishop("♗", Color.Black, new Position(7, 5));
+        this.board[7][6] = new Knight("♘", Color.Black, new Position(7, 6));
+        this.board[7][7] = new Rook("♖", Color.Black, new Position(7, 7));
+
+
     }
+    public Piece[][] getBoard() {
+        return this.board;
+    }
+    public  void printBoard(Piece[][] board) {
+        for (int i = 0; i < 8; i++) {
+            System.out.print("("+(8-i) +") ");
+            for (int j = 0; j < 8; j++) {
+                if (board[i][j] != null) {
+                    System.out.print(board[i][j].getSymbol() + " ");
+                } else {
+                    System.out.print("- "); // Print a - for empty squares
+                }
+
+            }
+            System.out.println();
+        }
+        System.out.println("\n \ta b c d e f g h ");
+    }
+
+
+
 
     public static char[][] createChessBoard() {
         char[][] board = new char[8][8];
@@ -73,22 +125,16 @@ public class Board {
 
     }
 
-    /*public static void printBoard(Piece[][] pieces) {
-        for (int i = 0; i < pieces.length; i++) {
-            System.out.print((8 - i) + " ");
-            for (int j = 0; j < pieces.length; j++) {
-                printPiece(pieces[i][j], false);
-            }
-            System.out.println();
-        }
-        System.out.println("  a b c d e f g h");
-    }*/
-
 
 
     public static void main(String[] args) {
-        char[][] chessBoard = createChessBoard();
-        printChessBoard(chessBoard);
+        /*char[][] chessBoard = createChessBoard();
+        printChessBoard(chessBoard);*/
+
+        Board chessBoard = new Board();
+        Piece[][] board = chessBoard.getBoard();
+        //System.out.println(board);
+        chessBoard.printBoard(board);
     }
 
 }
