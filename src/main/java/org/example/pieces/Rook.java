@@ -1,25 +1,34 @@
 package org.example.pieces;
 
+import org.example.board.Board;
+import org.example.board.Color;
 import org.example.board.Piece;
+import org.example.board.Position;
 
 // Tour
-class Rook extends Piece {
-    public Rook(int x, int y) {
-        super(x, y);
+public class Rook extends Piece {
+
+    public Rook(String symbol,Color color, Position position) {
+
+        super(symbol,color,position);
     }
 
+    public boolean isValidMove(Position newPosition, Board board) {
+        int dx = Math.abs(newPosition.row - position.row);
+        int dy = Math.abs(newPosition.column - position.column);
 
-    public boolean isValidMove(int newX, int newY) {
         // déplacement verticale (même x col)
-        if (newX == this.x && newY != this.y) {
-            return true;
-        }
-
         // déplacement horizontale(même y lig)
-        if (newY == this.y && newX != this.x) {
+        if (dx == 0 && dy >0 || dy == 0 && dx >0  ) {
             return true;
         }
-
         return false;
     }
+
+
+
+
+
+
+
 }

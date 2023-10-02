@@ -1,23 +1,26 @@
 package org.example.pieces;
 
+import org.example.board.Board;
+import org.example.board.Color;
 import org.example.board.Piece;
+import org.example.board.Position;
 
-class Bishop extends Piece {
+public class Bishop extends Piece {
     //Fou
-    public Bishop(int x, int y) {
-        super(x, y);
+    public Bishop(String symbol,Color color, Position position) {
+
+        super(symbol,color,position);
     }
 
-
-    public boolean isValidMove(int newX, int newY) {
+    public boolean isValidMove(Position newPosition, Board board) {
+        int dx = Math.abs(newPosition.row - position.row);
+        int dy = Math.abs(newPosition.column - position.column);
         // mvt diagonale
-        int dx = Math.abs(newX - this.x);
-        int dy = Math.abs(newY - this.y);
-
         if (dx == dy) {
             return true;
         }
 
         return false;
     }
+
 }

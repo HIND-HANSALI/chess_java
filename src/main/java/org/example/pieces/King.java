@@ -1,18 +1,26 @@
 package org.example.pieces;
 
+import org.example.board.Board;
+import org.example.board.Color;
 import org.example.board.Piece;
+import org.example.board.Position;
 
-class King extends Piece {
-    public King(int x, int y) {
-        super(x, y);
+public class King extends Piece {
+
+    public King(String symbol,Color color, Position position) {
+
+        super(symbol,color,position);
     }
 
-
-    public boolean isValidMove(int newX, int newY) {
+    public boolean isValidMove(Position newPosition, Board board) {
+        int dx = Math.abs(newPosition.row - position.row);
+        int dy = Math.abs(newPosition.column - position.column);
         // mouvement partout
-        int dx = Math.abs(newX - this.x);
-        int dy = Math.abs(newY - this.y);
+        if (dx <= 1 && dy <= 1) {
+            return true;
+        }
 
-        return dx <= 1 && dy <= 1;
+        return false;
     }
+
 }
