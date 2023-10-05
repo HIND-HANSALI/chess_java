@@ -25,28 +25,28 @@ public class Board {
     public void createChessBoard1(){
         for(int i = 0; i < 8; i++) {
 
-            this.board[1][i] = new Pawn("♟", Color.White, new Position(1, i));
-            this.board[6][i] = new Pawn("♙", Color.Black, new Position(6, i));
+            this.board[1][i] = new Pawn("♟", Color.White);
+            this.board[6][i] = new Pawn("♙", Color.Black);
         }
 //white
-        this.board[0][0] = new Rook("♜", Color.White, new Position(0, 0));
-        this.board[0][1] = new Knight("♞", Color.White, new Position(0, 1));
-        this.board[0][2] = new Bishop("♝", Color.White, new Position(0, 2));
-        this.board[0][3] = new Queen("♛", Color.White, new Position(0, 3));
-        this.board[0][4] = new King("♚", Color.White, new Position(0, 4));
-        this.board[0][5] = new Bishop("♝", Color.White, new Position(0, 5));
-        this.board[0][6] = new Knight("♞", Color.White, new Position(0, 6));
-        this.board[0][7] = new Rook("♜", Color.White, new Position(0, 7));
+        this.board[0][0] = new Rook("♜", Color.White);
+        this.board[0][1] = new Knight("♞", Color.White);
+        this.board[0][2] = new Bishop("♝", Color.White);
+        this.board[0][3] = new Queen("♛", Color.White);
+        this.board[0][4] = new King("♚", Color.White);
+        this.board[0][5] = new Bishop("♝", Color.White);
+        this.board[0][6] = new Knight("♞", Color.White);
+        this.board[0][7] = new Rook("♜", Color.White);
 
 //Black
-        this.board[7][0] = new Rook("♖", Color.Black, new Position(7, 0));
-        this.board[7][1] = new Knight("♘", Color.Black, new Position(7, 1));
-        this.board[7][2] = new Bishop("♗", Color.Black, new Position(7, 2));
-        this.board[7][3] = new Queen("♕", Color.Black, new Position(7, 3));
-        this.board[7][4] = new King("♔", Color.Black, new Position(7, 4));
-        this.board[7][5] = new Bishop("♗", Color.Black, new Position(7, 5));
-        this.board[7][6] = new Knight("♘", Color.Black, new Position(7, 6));
-        this.board[7][7] = new Rook("♖", Color.Black, new Position(7, 7));
+        this.board[7][0] = new Rook("♖", Color.Black);
+        this.board[7][1] = new Knight("♘", Color.Black);
+        this.board[7][2] = new Bishop("♗", Color.Black);
+        this.board[7][3] = new Queen("♕", Color.Black);
+        this.board[7][4] = new King("♔", Color.Black);
+        this.board[7][5] = new Bishop("♗", Color.Black);
+        this.board[7][6] = new Knight("♘", Color.Black);
+        this.board[7][7] = new Rook("♖", Color.Black);
 
 
     }
@@ -60,6 +60,9 @@ public class Board {
                 if (board[i][j] != null) {
                     System.out.print(board[i][j].getSymbol() + " ");
                 } else {
+
+                    board[i][j]  = new Pawn("-",Color.NULL);
+
                     System.out.print("- "); // Print a - for empty squares
                 }
 
@@ -68,6 +71,67 @@ public class Board {
         }
         System.out.println("\n \ta b c d e f g h ");
     }
+
+
+
+
+
+    public Piece getPiece(Position position){
+
+        if(position.row >= 0 && position.row< 8 && position.column >= 0 && position.column < 8){
+            return board[position.row][position.column];
+        }
+
+        return null;
+    }
+
+
+    public void makeMove(Position currentP,Position newP,Piece[][] board){
+        //Piece sourcePiece = board[currentP.row][currentP.column];
+
+        board[newP.row][newP.column].setSymbol(board[currentP.row][currentP.column].getSymbol());
+
+        //board[currentP.row][currentP.column] = null ;
+        board[currentP.row][currentP.column].setSymbol("-") ;
+
+    }
+
+//    public boolean makeMovetest(Position currentP,Position newP){
+//        //Piece sourcePiece = board[currentP.row][currentP.column];
+//    Piece currentPiece=getPiece(currentP);
+//    Piece destinationPiece=getPiece(newP);
+//
+//    if (currentPiece==null){
+//       return false;
+//    }
+//
+//        if(currentPiece.isValidMove(newP,this)){
+//            destinationPiece=currentPiece;
+//            currentPiece=null;
+//            currentPiece.setSymbol("-");
+//            ;
+//
+//            //the piece has moved
+//            currentPiece.setFirstmove(false);
+//            return true;
+//        }
+//
+//        return false;
+//    }
+
+
+
+    public static void main(String[] args) {
+        /*char[][] chessBoard = createChessBoard();
+        printChessBoard(chessBoard);*/
+
+        /*Board chessBoard = new Board();
+        Piece[][] board = chessBoard.getBoard();
+        //System.out.println(board);
+        chessBoard.printBoard(board);*/
+    }
+
+
 
 
 
@@ -81,14 +145,14 @@ public class Board {
             }
         }
 
-        board[0][0] = 'R';
+        board[0][0]='R';
         board[0][1]='H';
         board[0][2]='B';
         board[0][3]='Q';
         board[0][4]='K';
         board[0][5]='B';
         board[0][6]='H';
-        board[0][7] ='R';
+        board[0][7]='R';
 
         for (int col = 0; col < 8; col++) {
             board[1][col] = 'P';
@@ -123,18 +187,6 @@ public class Board {
             System.out.println();
         }
 
-    }
-
-
-
-    public static void main(String[] args) {
-        /*char[][] chessBoard = createChessBoard();
-        printChessBoard(chessBoard);*/
-
-        Board chessBoard = new Board();
-        Piece[][] board = chessBoard.getBoard();
-        //System.out.println(board);
-        chessBoard.printBoard(board);
     }
 
 }
