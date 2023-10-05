@@ -88,11 +88,18 @@ public class Board {
 
     public void makeMove(Position currentP,Position newP,Piece[][] board){
         //Piece sourcePiece = board[currentP.row][currentP.column];
+        Piece sourcePiece = board[currentP.row][currentP.column];
 
-        board[newP.row][newP.column].setSymbol(board[currentP.row][currentP.column].getSymbol());
+        System.out.println(sourcePiece.getFirstmove());
+        board[newP.row][newP.column] = board[currentP.row][currentP.column];
 
-        //board[currentP.row][currentP.column] = null ;
-        board[currentP.row][currentP.column].setSymbol("-") ;
+        board[currentP.row][currentP.column] = null ;
+
+
+
+
+
+
 
     }
 
