@@ -7,20 +7,27 @@ import org.example.board.Position;
 
 public class Bishop extends Piece {
     //Fou
-    public Bishop(String symbol,Color color, Position position) {
+    public Bishop() {}
+    public Bishop(String symbol,Color color) {
 
-        super(symbol,color,position);
+        super(symbol,color);
     }
-
-    public boolean isValidMove(Position newPosition, Board board) {
-        int dx = Math.abs(newPosition.row - position.row);
-        int dy = Math.abs(newPosition.column - position.column);
+    //♗
+    @Override
+    public boolean isValidMove(Position newPosition, Position position, Piece[][] board ,Color color) {
+        int dx = Math.abs(newPosition.column- position.column);
+        int dy = Math.abs(newPosition.row - position.row);
         // mvt diagonale
         if (dx == dy) {
+
             return true;
         }
 
         return false;
     }
 
+    @Override
+    public String toString(){
+        return "Bishop";
+    }
 }

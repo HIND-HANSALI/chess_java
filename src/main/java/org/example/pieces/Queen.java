@@ -7,14 +7,16 @@ import org.example.board.Position;
 
 public class Queen extends Piece {
 
-    public Queen(String symbol,Color color, Position position) {
+    public Queen(){}
 
-        super(symbol,color,position);
+    public Queen(String symbol,Color color) {
+
+        super(symbol,color);
     }
-
-    public boolean isValidMove(Position newPosition, Board board) {
-        int dx = Math.abs(newPosition.row - position.row);
-        int dy = Math.abs(newPosition.column - position.column);
+    @Override
+    public boolean isValidMove(Position newPosition, Position position,Piece[][] board ,Color color) {
+        int dx = Math.abs(newPosition.column - position.column);
+        int dy = Math.abs(newPosition.row - position.row);
 
         // mouvement soit horizontal, vertical ou diagonal
         if (dx == 0 || dy == 0 || dx == dy) {
@@ -24,5 +26,8 @@ public class Queen extends Piece {
         return false;
     }
 
-
+    @Override
+    public String toString(){
+        return "Queen";
+    }
 }
